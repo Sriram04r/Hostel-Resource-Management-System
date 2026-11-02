@@ -32,10 +32,12 @@ const sendAuthResponse = async (res, user, statusCode = 200) => {
   await user.save();
 
   // Set HTTP-only cookie
+  // In production (cross-domain: Vercel → Render), sameSite must be "none" + secure: true
+  const isProduction = process.env.NODE_ENV === "production";
   res.cookie("refreshToken", refreshToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   });
 
