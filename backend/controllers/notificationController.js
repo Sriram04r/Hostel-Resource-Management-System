@@ -1,5 +1,5 @@
 const Notification = require("../models/Notification");
-const Student = require("../models/Student");
+const Student = require("../models/student");
 
 // @desc    Create a new notification (Admin only)
 // @route   POST /api/notifications
