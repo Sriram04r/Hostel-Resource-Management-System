@@ -4,7 +4,7 @@ const api = axios.create({
   baseURL: import.meta.env?.VITE_API_BASE_URL || "http://localhost:5000/api",
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
-  timeout: 30000, // 30 seconds timeout to handle slow DB connection latency
+  timeout: 65000, // 65 seconds — Render free tier can take ~50s to wake up from sleep
 });
 
 api.interceptors.request.use((config) => {
